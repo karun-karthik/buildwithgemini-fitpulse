@@ -8,49 +8,182 @@
      corp network), icons fall back to showing their name as text. -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
 <style>
-  :root { --accent:#e65100; --accent-hover:#bf360c; --bg:#fbfbfa; --border:#e2e8f0; }
+  :root {
+    --accent: #0f172a;         /* Deep slate/black */
+    --accent-hover: #1e293b;   /* Charcoal hover */
+    --bg: #f8fafc;             /* Crisp clean light neutral background */
+    --card-bg: #ffffff;
+    --border: #e2e8f0;         /* Modern silver border */
+    --border-hover: #cbd5e1;
+    --text-primary: #0f172a;
+    --text-muted: #64748b;
+    --silver-subtle: #f1f5f9;
+  }
   * { box-sizing:border-box; }
-  body { margin:0; font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; background:var(--bg); display:flex; flex-direction:column; height:100vh; }
-  header { background:var(--accent); color:#fff; padding:.9rem 1.4rem; font-weight:700; font-size:1.15rem; display:flex; align-items:center; gap:.5rem; box-shadow:0 2px 4px rgba(0,0,0,.08); }
-  #log { flex:1; overflow-y:auto; padding:1.2rem; max-width:780px; width:100%; margin:0 auto; }
-  .msg { margin:.6rem 0; }
+  body {
+    margin:0;
+    font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    background:var(--bg);
+    color:var(--text-primary);
+    display:flex;
+    flex-direction:column;
+    height:100vh;
+  }
+  header {
+    background:#0f172a;
+    color:#f8fafc;
+    padding:1rem 1.5rem;
+    font-weight:700;
+    font-size:1.15rem;
+    display:flex;
+    align-items:center;
+    gap:.6rem;
+    border-bottom:1px solid #1e293b;
+    box-shadow:0 1px 3px rgba(0,0,0,0.06);
+    letter-spacing:-0.01em;
+  }
+  #log {
+    flex:1;
+    overflow-y:auto;
+    padding:1.4rem;
+    max-width:780px;
+    width:100%;
+    margin:0 auto;
+  }
+  .msg {
+    margin:.8rem 0;
+    animation: fadeIn 0.18s ease;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
   .msg.user { text-align:right; }
-  .bubble { display:inline-block; padding:.6rem .9rem; border-radius:12px; background:#fff; border:1px solid var(--border); text-align:left; max-width:90%; white-space:pre-wrap; box-shadow:0 1px 2px rgba(0,0,0,.04); }
-  .msg.user .bubble { background:var(--accent); color:#fff; border:none; }
+  .bubble {
+    display:inline-block;
+    padding:.75rem 1rem;
+    border-radius:14px;
+    background:var(--card-bg);
+    border:1px solid var(--border);
+    color:var(--text-primary);
+    text-align:left;
+    max-width:88%;
+    white-space:pre-wrap;
+    box-shadow:0 1px 3px rgba(0,0,0,.03);
+    line-height:1.45;
+  }
+  .msg.user .bubble {
+    background:#0f172a;
+    color:#ffffff;
+    border:1px solid #0f172a;
+  }
   /* When the reply is an A2UI card, drop the bubble chrome so the card stands alone. */
-  .bubble.rich { background:transparent; border:none; padding:0; max-width:100%; white-space:normal; box-shadow:none; }
-  .suggestions { display:flex; gap:.5rem; padding:.5rem 1rem 0; max-width:780px; width:100%; margin:0 auto; overflow-x:auto; }
-  .chip { background:#fff; border:1px solid var(--border); color:#374151; border-radius:16px; padding:.4rem .8rem; font-size:.85rem; cursor:pointer; white-space:nowrap; transition:all .15s ease; }
-  .chip:hover { border-color:var(--accent); color:var(--accent); background:#fff8f3; }
-  form { display:flex; gap:.5rem; padding:1rem; border-top:1px solid var(--border); background:#fff; max-width:780px; width:100%; margin:0 auto; }
-  input { flex:1; padding:.7rem; border:1px solid var(--border); border-radius:8px; font-size:1rem; outline:none; }
-  input:focus { border-color:var(--accent); }
-  button { padding:.7rem 1.2rem; border:none; border-radius:8px; background:var(--accent); color:#fff; font-weight:600; cursor:pointer; transition:background .15s ease; }
-  button:hover { background:var(--accent-hover); }
+  .bubble.rich {
+    background:transparent;
+    border:none;
+    padding:0;
+    max-width:100%;
+    white-space:normal;
+    box-shadow:none;
+  }
+  .suggestions {
+    display:flex;
+    gap:.6rem;
+    padding:.6rem 1rem 0.2rem;
+    max-width:780px;
+    width:100%;
+    margin:0 auto;
+    overflow-x:auto;
+  }
+  .chip {
+    background:#ffffff;
+    border:1px solid var(--border);
+    color:#334155;
+    border-radius:20px;
+    padding:.45rem .9rem;
+    font-size:.85rem;
+    font-weight:500;
+    cursor:pointer;
+    white-space:nowrap;
+    transition:all .15s ease;
+    box-shadow:0 1px 2px rgba(0,0,0,0.02);
+  }
+  .chip:hover {
+    border-color:#94a3b8;
+    color:#0f172a;
+    background:#f1f5f9;
+  }
+  form {
+    display:flex;
+    gap:.6rem;
+    padding:1rem;
+    border-top:1px solid var(--border);
+    background:#ffffff;
+    max-width:780px;
+    width:100%;
+    margin:0 auto;
+  }
+  input {
+    flex:1;
+    padding:.75rem 1rem;
+    border:1px solid var(--border);
+    border-radius:10px;
+    font-size:.95rem;
+    outline:none;
+    background:#f8fafc;
+    color:#0f172a;
+    transition:border-color .15s ease, background .15s ease;
+  }
+  input:focus {
+    border-color:#64748b;
+    background:#ffffff;
+  }
+  button {
+    padding:.75rem 1.4rem;
+    border:1px solid #0f172a;
+    border-radius:10px;
+    background:#0f172a;
+    color:#ffffff;
+    font-weight:600;
+    font-size:.95rem;
+    cursor:pointer;
+    transition:all .15s ease;
+  }
+  button:hover {
+    background:#1e293b;
+    border-color:#1e293b;
+  }
 
   /* --- A2UI component styles (Card, Column, Row, Text, Divider, List, Image, Icon) --- */
-  .a2card { border:1px solid var(--border); border-radius:12px; padding:1rem; background:#fff; box-shadow:0 1px 3px rgba(0,0,0,.06); max-width:100%; }
-  .a2card + .a2card, .a2col > .a2card { margin-top:.6rem; }
-  .a2col { display:flex; flex-direction:column; gap:.4rem; }
-  .a2row { display:flex; flex-direction:row; gap:.6rem; align-items:center; flex-wrap:wrap; }
+  .a2card {
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:1.2rem;
+    background:#ffffff;
+    box-shadow:0 2px 5px rgba(0,0,0,.04);
+    max-width:100%;
+  }
+  .a2card + .a2card, .a2col > .a2card { margin-top:.7rem; }
+  .a2col { display:flex; flex-direction:column; gap:.45rem; }
+  .a2row { display:flex; flex-direction:row; gap:.7rem; align-items:center; flex-wrap:wrap; }
   .a2row.between { justify-content:space-between; }
-  .a2text { margin:0; line-height:1.4; }
-  .a2text.a2-h1 { font-size:1.5rem; font-weight:700; }
-  .a2text.a2-h2 { font-size:1.25rem; font-weight:700; }
-  .a2text.a2-h3 { font-size:1.1rem; font-weight:600; }
-  .a2text.a2-h4 { font-size:1rem; font-weight:600; }
-  .a2text.a2-caption { font-size:.85rem; color:#666; }
-  .a2divider { border:none; border-top:1px solid var(--border); margin:.4rem 0; width:100%; }
-  .a2img { max-width:100%; border-radius:8px; display:block; }
-  .material-symbols-outlined { font-family:'Material Symbols Outlined'; font-size:1.25rem; line-height:1; vertical-align:middle; color:var(--accent); }
+  .a2text { margin:0; line-height:1.45; color:var(--text-primary); }
+  .a2text.a2-h1 { font-size:1.45rem; font-weight:700; color:#0f172a; }
+  .a2text.a2-h2 { font-size:1.2rem; font-weight:700; color:#0f172a; letter-spacing:-0.01em; }
+  .a2text.a2-h3 { font-size:1.05rem; font-weight:600; color:#1e293b; }
+  .a2text.a2-h4 { font-size:.95rem; font-weight:600; color:#334155; }
+  .a2text.a2-caption { font-size:.82rem; color:var(--text-muted); }
+  .a2divider { border:none; border-top:1px solid var(--border); margin:.6rem 0; width:100%; }
+  .a2img { max-width:100%; border-radius:10px; display:block; border:1px solid var(--border); }
+  .material-symbols-outlined { font-family:'Material Symbols Outlined'; font-size:1.25rem; line-height:1; vertical-align:middle; color:#475569; }
 </style>
 </head>
 <body>
 <header>⚡ FitPulse</header>
 <div id="log"></div>
 <div class="suggestions">
-  <button type="button" class="chip" data-prompt="Can you recommend a quick 15-minute bodyweight routine?">🔥 15-Min Quick Routine</button>
-  <button type="button" class="chip" data-prompt="Find a beginner upper body dumbbell workout">💪 Upper Body Dumbbell</button>
+  <button type="button" class="chip" data-prompt="Can you recommend a quick 15-minute bodyweight routine?">⚡ 15-Min Quick Routine</button>
+  <button type="button" class="chip" data-prompt="Find a beginner upper body dumbbell workout">🏋️ Upper Body Dumbbell</button>
   <button type="button" class="chip" data-prompt="Show my recent workout logs">📋 Recent Workout Logs</button>
 </div>
 <form id="form">
